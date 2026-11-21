@@ -1,0 +1,10 @@
+Γû▓ Next.js 16.4.2 (webpack)
+Γ£ô Running next.config.ts took 397ms
+
+  Creating an optimized production build ...
+Failed to compile.
+
+Error: EPERM: operation not permitted, mkdir 'C:\Users\DELL\Documents\ChatGPT\FlexiSAF Internship Deliverables\tasklane-connected\.next\server\app\api'
+
+
+> Build failed because of webpack errors
