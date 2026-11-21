@@ -3,7 +3,7 @@ import { ActionError } from './engine';
 import type { Answer } from './knowledge';
 export type Conversation = { id:string; user_id:string; question:string; answer:Answer; created_at:string; rating:'helpful'|'unhelpful'|null; feedback:string; flagged:boolean; needs_review:boolean; review_status:'pending'|'resolved'; review_note:string; version:number };
 function config(){
- const url=process.env.SUPABASE_URL, anon=process.env.SUPABASE_ANON_KEY, service=process.env.SUPABASE_SERVICE_ROLE_KEY;
+ const url=process.env.SUPABASE_URL, anon=process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY, service=process.env.SUPABASE_SERVICE_ROLE_KEY;
  if(!url||!anon||!service)throw new ActionError(503,'Account storage is not configured yet.');
  return {url:url.replace(/\/$/,''),anon,service};
 }
