@@ -4,7 +4,9 @@ Module 13: Full-Stack AI Feature Integration. A separate Tasklane project with a
 
 Repository: https://github.com/PenielOkoli/tasklane-connected
 
-**Status: implementation prepared; database provisioning and live deployment verification are pending. No live Vercel URL is claimed yet.**
+Live Vercel URL: https://tasklane-connected-site.vercel.app
+
+**Status: deployed from GitHub main. Database provisioning, Production environment variables and live persistence/admin verification remain pending. The deployed interface is not yet a working account backend.**
 
 ## What is implemented
 

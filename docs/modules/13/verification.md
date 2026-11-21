@@ -12,3 +12,7 @@ Date: 21 November 2026.
 - Browser account workflow: pending database provisioning; no successful login or persisted history screenshot claimed.
 
 Do not mark the curriculum deliverable complete until the dedicated live deployment and real database checks pass. No learner-written code review has been fabricated.
+
+## Production deployment
+
+Vercel project `tasklane-connected-site` deployed successfully from GitHub main commit `51f0c740d7127d9bdba4998bb2107d3ec7b823a1`. Production URL: https://tasklane-connected-site.vercel.app. Vercel dashboard confirmed Ready and automatic updates from main. The preview reports missing server protection configuration; database and Production variables remain pending. Supabase installation is paused before accepting provider terms.
