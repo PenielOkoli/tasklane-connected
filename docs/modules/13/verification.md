@@ -1,18 +1,29 @@
 # Verification status
 
-Date: 21 November 2026.
+Updated: 22 November 2026. Live observations below were made on 21 November 2026.
 
-- TypeScript: passed after implementation.
+## Verified
+
+- TypeScript passed after implementation.
 - Regression suite: 71 passed, 0 failed.
-- Route integration: 3 passed, 0 failed. Covers verified-account save/reload/feedback/review, owner isolation, non-admin rejection, stale updates, cross-origin and anonymous rejection, and failed-save handling. Supabase is simulated in these tests; they are not proof of database durability or PostgreSQL policy correctness.
-- Default local production build: blocked by Windows sandbox denial of Turbopack junction creation. See build-output.txt. Webpack also blocked by sandbox EPERM when creating .next/server/app/api; see build-webpack-output.txt. Neither local build passed.
-- Real PostgreSQL migration/RLS: pending provider provisioning.
-- Live database/session/admin integration: pending. Reproducible runner provided in scripts/live-integration.mjs.
-- Live AI generation: pending Production environment configuration.
-- Browser account workflow: pending database provisioning; no successful login or persisted history screenshot claimed.
+- Route integration: 3 passed, 0 failed. Covers account save/reload/feedback/review, ownership isolation, non-admin rejection, stale updates, cross-origin and anonymous rejection, and failed-save handling. These tests simulate Supabase HTTP transport; they do not prove real PostgreSQL policy behavior.
+- Vercel production deployment of commit 4257224a9a8cf999bc30c082b60fb722a780c736 was Ready after redeployment with the Production session secret and Supabase integration variables.
+- Initial PostgreSQL migration executed successfully. A catalog query confirmed conversations, review_events, and workspace_admins exist with row-level security enabled.
+- Supabase email confirmation and live account sign-in succeeded. The initial localhost redirect was corrected to the production Site URL and the saved setting was verified after dashboard reload.
+- A test conversation was saved through the live frontend and remained in account history after a full page reload.
+- Needs-improvement feedback and a human-review flag were saved through the frontend. After a full reload and reopening the conversation, the rating, feedback text and flag were restored.
 
-Do not mark the curriculum deliverable complete until the dedicated live deployment and real database checks pass. No learner-written code review has been fabricated.
+## Remaining acceptance checks
 
-## Production deployment
+- Configure GROQ_API_KEY securely in Production, redeploy and verify a consented AI answer with source citations.
+- Provision the intended administrator after authorization, then verify the live queue, resolution and persisted review audit event.
+- Run npm run test:live using three distinct confirmed test accounts. Fresh-login persistence, cross-account isolation and the complete real-database admin path have not yet been verified by this runner.
+- RLS is enabled; direct-role isolation and database function privileges still need real-database behavioral checks.
 
-Vercel project `tasklane-connected-site` deployed successfully from GitHub main commit `51f0c740d7127d9bdba4998bb2107d3ec7b823a1`. Production URL: https://tasklane-connected-site.vercel.app. Vercel dashboard confirmed Ready and automatic updates from main. The preview reports missing server protection configuration; database and Production variables remain pending. Supabase installation is paused before accepting provider terms.
+## Build evidence and limits
+
+The cloud production build succeeded. Local Turbopack was blocked by Windows sandbox denial of junction creation; local Webpack was blocked by EPERM creating .next/server/app/api. See the retained build logs. Neither local build passed.
+
+Production: https://tasklane-connected-site.vercel.app
+
+Do not mark all curriculum acceptance criteria complete until the remaining live checks pass. No learner-authored review or unexecuted test result is claimed.

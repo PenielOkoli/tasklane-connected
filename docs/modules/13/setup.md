@@ -2,7 +2,7 @@
 
 ## Dedicated resources
 
-Use a NEW Supabase project and NEW Vercel project for `PenielOkoli/tasklane-connected`. Do not attach an older Tasklane database or replace a historical deployment. The Vercel Supabase integration currently awaits the account owner's acceptance of its marketplace/provider terms.
+Use a NEW Supabase project and NEW Vercel project for `PenielOkoli/tasklane-connected`. Do not attach an older Tasklane database or replace a historical deployment. The dedicated Supabase database is provisioned and connected to Production. The initial migration is applied. Supabase Auth Site URL is https://tasklane-connected-site.vercel.app and email confirmation remains enabled. Do not reapply the initial migration to the existing database.
 
 1. Provision the dedicated Supabase database on a free plan, subject to availability. Apply `supabase/migrations/001_connected.sql` once through its SQL editor or migration tooling.
 2. Enable Supabase email/password Auth. Keep email confirmation enabled. Set the Auth site URL to the new production deployment. Configure email delivery if the provider's default mail service does not permit external recipients.
@@ -34,3 +34,4 @@ Feedback reopens a resolved review; prior review events remain in the audit tabl
 Live test environment names: TEST_BASE_URL, TEST_OWNER_EMAIL, TEST_OWNER_PASSWORD, TEST_OTHER_EMAIL, TEST_OTHER_PASSWORD, TEST_ADMIN_EMAIL, TEST_ADMIN_PASSWORD. Supply these securely through process/CI environment; no credential files in source. The test makes no paid model call, leaves a clearly labeled audit record, and verifies persistence after a fresh login. A separate consented live AI request is still needed to verify Groq integration.
 
 Limitations: inherited rate limits are process-local, not a distributed quota; password reset UI and account deletion UI are not implemented; production backup/retention policies need provider configuration. Review notes resolve an item but do not rewrite generated answers.
+

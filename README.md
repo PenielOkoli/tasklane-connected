@@ -6,7 +6,7 @@ Repository: https://github.com/PenielOkoli/tasklane-connected
 
 Live Vercel URL: https://tasklane-connected-site.vercel.app
 
-**Status: deployed from GitHub main. Database provisioning, Production environment variables and live persistence/admin verification remain pending. The deployed interface is not yet a working account backend.**
+**Status: deployed with a working Supabase account backend. Sign-in, saved conversations and feedback surviving page reload were verified on 21 November 2026. Live AI generation, administrator review and the three-account live integration run remain pending.**
 
 ## What is implemented
 
@@ -28,3 +28,4 @@ Commands: `npm run typecheck`, `npm test`, `npm run test:integration`, `npm run 
 This continues the user-selected Tasklane product in its own repository and Vercel project. It starts from the local Module 12 feature checkout; that module's draft PR remains separate and unmerged. Earlier submitted projects and deployments are not modified. The source documents are fictional project examples. Account activity is stored only when the new backend is configured and confirms the save.
 
 The new account workflow is at `/`. Historical demonstration routes are retained as reference code and are not evidence of this module's durable persistence. Sessions last at most one hour; sign in again to retrieve the same account history. This implementation saves individual question/answer conversations, not multi-turn model memory.
+
