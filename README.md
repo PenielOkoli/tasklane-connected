@@ -8,6 +8,18 @@ Live Vercel URL: https://tasklane-connected-site.vercel.app
 
 **Status: live Groq answer generation, saved account history, administrator access and persisted admin review were verified on 22 November 2026. The three-account live integration runner and direct-role RLS checks remain pending.**
 
+## Major deliverables
+
+- [GitHub repository](https://github.com/PenielOkoli/tasklane-connected)
+- [Live Vercel application](https://tasklane-connected-site.vercel.app)
+- [Integrated application source](src)
+- [Implementation plan and acceptance criteria](docs/modules/13/plan.md)
+- [Database and session setup](docs/modules/13/setup.md)
+- [Supabase database migration](supabase/migrations/001_connected.sql)
+- [Route integration tests](tests/connected.integration.ts)
+- [Three-account live integration runner](scripts/live-integration.mjs)
+- [Live verification results and remaining checks](docs/modules/13/verification.md)
+
 ## What is implemented
 
 - Next.js route handlers for verified Supabase Auth accounts, conversations, feedback and admin review.
