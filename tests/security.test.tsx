@@ -41,4 +41,26 @@ test('privacy defaults to tab storage, expires data, migrates only on consent an
  writeEvidence('tasklane-feedback',[2]);chooseRetention(false);assert.equal(readEvidence('tasklane-feedback')[0],2);eraseEvidence();assert.equal(local.size,0);assert.equal(session.size,0);
  delete (globalThis as {window?:unknown}).window;delete (globalThis as {localStorage?:unknown}).localStorage;delete (globalThis as {sessionStorage?:unknown}).sessionStorage;
 });
-test('application has no raw HTML rendering sinks or public secret environment names',()=>{function scan(dir:string){for(const entry of readdirSync(dir,{withFileTypes:true})){const path=join(dir,entry.name);if(entry.isDirectory())scan(path);else if(/\.[jt]sx?$/.test(path)){const text=readFileSync(path,'utf8');assert.doesNotMatch(text,/dangerouslySetInnerHTML|\.innerHTML\s*=|NEXT_PUBLIC_[A-Z_]*(?:KEY|SECRET)/,path);}}}scan('src');});
+test('application has no raw HTML rendering sinks or public secret environment names', () => {
+ const publicAnonKey = 'NEXT_PUBLIC_SUPABASE_ANON_KEY';
+
+ function scan(directory: string) {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+   const path = join(directory, entry.name);
+   if (entry.isDirectory()) {
+    scan(path);
+    continue;
+   }
+   if (!/\.[jt]sx?$/.test(path)) continue;
+
+   const source = readFileSync(path, 'utf8');
+   assert.doesNotMatch(source, /dangerouslySetInnerHTML|\.innerHTML\s*=/, path);
+   for (const [name] of source.matchAll(/NEXT_PUBLIC_[A-Z0-9_]+/g)) {
+    // Supabase's anonymous API key is intended for public clients.
+    if (name === publicAnonKey) continue;
+    assert.doesNotMatch(name, /KEY|SECRET/, `${path}: ${name}`);
+   }
+  }
+ }
+ scan('src');
+});
